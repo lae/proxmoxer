@@ -100,10 +100,10 @@ class ProxmoxResource(ProxmoxResourceBase):
 
 
 class ProxmoxAPI(ProxmoxResourceBase):
-    def __init__(self, host, backend='https', **kwargs):
+    def __init__(self, backend='https', **kwargs):
 
         #load backend module
-        self._backend = importlib.import_module('.backends.%s' % backend, 'proxmoxer').Backend(host, **kwargs)
+        self._backend = importlib.import_module('.backends.%s' % backend, 'proxmoxer').Backend(**kwargs)
 
         self._store = {
             "base_url": self._backend.get_base_url(),
